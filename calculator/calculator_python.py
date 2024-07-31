@@ -74,9 +74,11 @@ class Calculator:
                     values.append(number)
                     i -= 1 # decrement the index by 1 to avoid skipping the next character after the number
                 elif expression[i] in "+-*/":
+                    # ensure that * and / are processed before + and -
                     while (operators and operators[-1] in "*/" and expression[i] in "+-") or (operators and operators[-1] in "*/" and expression[i] in "*/"):
                         apply_operator(operators, values)
                     operators.append(expression[i])
+                # handling parentheses' precedence in expressions    
                 elif expression[i] == '(':
                     operators.append(expression[i])
                 elif expression[i] == ')':
