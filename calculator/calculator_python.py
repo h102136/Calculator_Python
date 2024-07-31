@@ -72,8 +72,7 @@ class Calculator:
                         number = number * 10 + int(expression[i]) # ex: "123" -> 1*10+2=12, 12*10+3=123
                         i += 1
                     values.append(number)
-                    i -= 1
-                # if the character is an operator, append the operator to "operators"
+                    i -= 1 # decrement the index by 1 to avoid skipping the next character after the number
                 elif expression[i] in "+-*/":
                     while (operators and operators[-1] in "*/" and expression[i] in "+-") or (operators and operators[-1] in "*/" and expression[i] in "*/"):
                         apply_operator(operators, values)
