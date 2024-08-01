@@ -19,25 +19,22 @@ Unit test cases (calss and function) and coverage reports included
 
 ### Steps
 
-1. Clone the repository:
-    open CMD or PowerShell
+Clone the repository:<br><br>
+    Open CMD or PowerShell and type the command below:
     ```sh
     git clone https://github.com/h102136/Calculator_Python
-    cd Calculator_Python
-    ```
+    cd Calculator_Python/calculator
+    ```<br>
+    The path setting of the program located is completed.
+## Usage
 
-2. Set up the virtual environment:
+Run the program:<br><br>
+    Type the command below on the current path:
     ```sh
-    python -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    python calculator_python.py
     ```
-
-3. Install the dependencies:
+    and the program will show:<br>
     ```sh
-    pip install -r requirements.txt
-    ```
-
-4. (Optional) If there are additional setup steps:
-    ```sh
-    # Additional setup commands
-    ```
+    Enter an expression ex:(7+8.5)*5-9/3 (+, -, *, / only) or Q for quit: 
+    ```<br>
+    then you are good to input a expression and get a result.
