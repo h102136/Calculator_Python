@@ -1,8 +1,0 @@
-Name                              Stmts   Miss  Cover   Missing
----------------------------------------------------------------
-calculator\__init__.py                0      0   100%
-calculator\calculator_python.py      74      8    89%   47, 106-113
-tests\__init__.py                     0      0   100%
-tests\test_calculator_class.py       55      2    96%   63, 71
----------------------------------------------------------------
-TOTAL                               129     10    92%
