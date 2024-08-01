@@ -23,23 +23,26 @@ Clone the repository:<br><br>
     
 - Open CMD or PowerShell and type the command below:<br><br>
 ```sh
-        git clone https://github.com/h102136/Calculator_Python<br>
+        git clone https://github.com/h102136/Calculator_Python
+```
+```sh
         cd Calculator_Python/calculator
 ```
-<br><br>
+<br>
 - The path setting of the program located is completed.
     
 ## Usage
 
 Run the program:<br><br>
-    <pre>
-        Type the command below on the current path:<br><br>
-        ```sh
-        python calculator_python.py
-        ```<br><br>
-        and the program will show:<br>
-        ```sh
-        Enter an expression ex:(7+8.5)*5-9/3 (+, -, *, / only) or Q for quit: 
-        ```<br><br>
-        then you are good to input a expression and get a result.
-    </pre>
+
+- Type the command below on the current path:<br><br>
+```sh
+    python calculator_python.py
+```
+<br>
+- and the program will show:<br>
+```sh
+    Enter an expression ex:(7+8.5)*5-9/3 (+, -, *, / only) or Q for quit: 
+```
+<br>
+- then you are good to input a expression and get a result.
