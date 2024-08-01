@@ -1,75 +1,65 @@
 
 import unittest
 from unittest.mock import patch
-from io import StringIO
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from calculator.calculator import Calculator
+from calculator.calculator import InputHandler
+
+class TestInputHandler(unittest.TestCase):
+
+    def setUp(self):
+        self.input_handler = InputHandler()
+
+    # patch the input() function to return a specific value
+    @patch('builtins.input', side_effect=['(7+8.5)*5-9/3', 'Q'])
+    # test the get_expression() method with a valid expression
+    def test_get_expression_valid(self, mock_input):
+        expression = self.input_handler.get_expression()
+        self.assertEqual(expression, '(7+8.5)*5-9/3')
+
+    @patch('builtins.input', side_effect=['invalid_expression', '(7+8.5)*5-9/3', 'Q'])
+    # test the get_expression() method with an invalid expression followed by a valid expression
+    def test_get_expression_invalid_then_valid(self, mock_input):
+        expression = self.input_handler.get_expression()
+        self.assertEqual(expression, '(7+8.5)*5-9/3')
+
+    # test the validate_expression() method with a valid expression
+    def test_validate_expression_valid(self):
+        self.assertTrue(self.input_handler.validate_expression('(7+8.5)*5-9/3'))
+
+    # test the validate_expression() method with an invalid expression
+    def test_validate_expression_invalid_chars(self):
+        self.assertFalse(self.input_handler.validate_expression('7+8.5a*5-9/3'))
+
+    # test the validate_expression() method with consecutive operators
+    def test_validate_expression_consecutive_operators(self):
+        self.assertFalse(self.input_handler.validate_expression('7++8.5*5-9/3'))
 
 class TestCalculator(unittest.TestCase):
-
     def setUp(self):
         self.calculator = Calculator()
 
-    # test case for user input
-    @patch('builtins.input', side_effect=['2+3*5', 'Q'])
-    def test_get_expression_valid(self, mock_input):
-        expression = self.calculator.get_expression()
-        self.assertEqual(expression, '2+3*5')
+    # test the parse_expression() method with a simple expression
+    def test_evaluate_expression_simple(self):
+        result = self.calculator.evaluate_expression('2+3')
+        self.assertEqual(result, 5)
 
-    # test case for invalid user input
-    @patch('builtins.input', side_effect=['2++3', 'Q'])
-    def test_get_expression_invalid(self, mock_input):
-        with self.assertRaises(SystemExit):
-            self.calculator.get_expression()
-
-    # test case for expression validation
-    def test_validate_expression(self):
-        self.calculator.expression = "2+3*5"
-        self.assertTrue(self.calculator.validate_expression())
-        self.calculator.expression = "2+3*5a"
-        self.assertFalse(self.calculator.validate_expression())
-        self.calculator.expression = "(2+3)*5"
-        self.assertTrue(self.calculator.validate_expression())
-        self.calculator.expression = "2++3"
-        self.assertFalse(self.calculator.validate_expression())
-
-    # test case for expression evaluation
-    def test_evaluate_expression(self):
-        self.calculator.expression = "2+3*5"
-        self.assertEqual(self.calculator.evaluate_expression(), 17)
-        self.calculator.expression = "(2+3)*5"
-        self.assertEqual(self.calculator.evaluate_expression(), 25)
-        self.calculator.expression = "10/2.5+3*4"
-        self.assertEqual(self.calculator.evaluate_expression(), 16)
-        self.calculator.expression = "10/(5-3)"
-        self.assertEqual(self.calculator.evaluate_expression(), 5)
+    # test the parse_expression() method with a complex expression
+    def test_evaluate_expression_complex(self):
+        result = self.calculator.evaluate_expression('(7+8.5)*5-9/3')
+        self.assertAlmostEqual(result, 74.5)
     
-    # test case for reinitializing the expression
-    def test_reinitialize(self):
-        self.calculator.expression = "2++3" # invalid expression
-        self.assertFalse(self.calculator.validate_expression()) # validate the expression and it's invalid
-        
-        with patch('builtins.input', side_effect=['2+3*5']): # user re-enter the expression 
-            self.calculator.reinitialize() # reinitialize the expression after user re-enter the expression
-        
-        self.calculator.expression = "2+3*5"
-        self.assertTrue(self.calculator.validate_expression())
+    # test the parse_expression() method with a float result
+    def test_evaluate_expression_with_floats(self):
+        result = self.calculator.evaluate_expression('7.5*2')
+        self.assertAlmostEqual(result, 15.0)
 
-    # test case for main function (make sure the loop is working)
-    @patch('builtins.input', side_effect=['2+3*5', 'Q'])
-    @patch('sys.stdout', new_callable=StringIO)
-    def test_main_valid_expression(self, mock_stdout, mock_input):
-        calc = Calculator()
-        calc.get_expression()
-        if not calc.validate_expression():
-            calc.reinitialize()
-        else:
-            result = calc.evaluate_expression()
-            print(f"The result of the expression is: {result}")
-        
-        self.assertIn("The result of the expression is: 17", mock_stdout.getvalue())
+    # test the parse_expression() method with parentheses
+    def test_evaluate_expression_with_parentheses(self):
+        result = self.calculator.evaluate_expression('2*(3+4)')
+        self.assertEqual(result, 14)
 
 if __name__ == '__main__':
     unittest.main()
