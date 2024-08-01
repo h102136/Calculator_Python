@@ -20,21 +20,24 @@ Unit test cases (calss and function) and coverage reports included
 ### Steps
 
 Clone the repository:<br><br>
-    &nbsp;Open CMD or PowerShell and type the command below:
-    &nbsp;```sh
-    git clone https://github.com/h102136/Calculator_Python
-    cd Calculator_Python/calculator
-    ```<br>
-    &nbsp;The path setting of the program located is completed.
+    <pre>
+        Open CMD or PowerShell and type the command below:<br><br>
+        ```sh
+        git clone https://github.com/h102136/Calculator_Python<br>
+        cd Calculator_Python/calculator```<br><br>
+        The path setting of the program located is completed.
+    </pre>
 ## Usage
 
 Run the program:<br><br>
-    Type the command below on the current path:<br>
-    ```sh
-    python calculator_python.py
-    ```
-    and the program will show:<br>
-    ```sh
-    Enter an expression ex:(7+8.5)*5-9/3 (+, -, *, / only) or Q for quit: 
-    ```<br>
-    then you are good to input a expression and get a result.
+    <pre>
+        Type the command below on the current path:<br><br>
+        ```sh
+        python calculator_python.py
+        ```<br><br>
+        and the program will show:<br>
+        ```sh
+        Enter an expression ex:(7+8.5)*5-9/3 (+, -, *, / only) or Q for quit: 
+        ```<br><br>
+        then you are good to input a expression and get a result.
+    </pre>
