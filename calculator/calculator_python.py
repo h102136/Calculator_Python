@@ -10,7 +10,7 @@ class Calculator:
     def get_expression(self):
         # get the expression from the user with limited operators
         while True:
-            self.expression = input("Enter an expression ex:(7+8)*5-9/3 (+, -, *, / only) or Q for quit: ")
+            self.expression = input("Enter an expression ex:(7+8.5)*5-9/3 (+, -, *, / only) or Q for quit: ")
             
             # check if the user wants to quit
             if self.expression.upper() == "Q":
@@ -20,13 +20,21 @@ class Calculator:
 
     # check if the expression is valid with limited operators
     def validate_expression(self):
-        # define the valid characters (0-9, +, -, *, /, (, ))
-        valid_chars = re.compile(r'^[\d\+\-\*\/\(\)]+$')
+        # define the valid characters (0-9, ., +, -, *, /, (, ))
+        valid_chars = re.compile(r'^[\d\.\+\-\*\/\(\)]+$')
+        # define the pattern for consecutive operators
+        consecutive_operators = re.compile(r'[\+\-\*\/]{2,}')
 
         # if the expression contains invalid characters, will ask the user to re-enter the expression
         if not valid_chars.match(self.expression):
             print("The expression contains invalid characters")
             return False
+
+        # if the expression contains consecutive operators, return False
+        if consecutive_operators.search(self.expression):
+            print("The expression contains consecutive operators")
+            return False
+
         return True
 
     # the function is for re-initialize the expression and ask the user to re-enter the expression
@@ -44,7 +52,6 @@ class Calculator:
         # parse the expression
         def parse_expression(expression):
 
-            
             def apply_operator(operators, values):
                 operator = operators.pop() # get the last operator in "operators" list
                 right = values.pop() # get the last value in "values" list as "right"
@@ -65,13 +72,13 @@ class Calculator:
             i = 0 # index of the expression
 
             while i < len(expression):
-                # if the character is a digit, append the number to "values"
-                if expression[i].isdigit():
-                    number = 0
-                    while i < len(expression) and expression[i].isdigit():
-                        number = number * 10 + int(expression[i]) # ex: "123" -> 1*10+2=12, 12*10+3=123
+                # if the character is a digit or a dot, parse the number
+                if expression[i].isdigit() or expression[i] == '.':
+                    number = ''
+                    while i < len(expression) and (expression[i].isdigit() or expression[i] == '.'):
+                        number += expression[i]
                         i += 1
-                    values.append(number)
+                    values.append(float(number))
                     i -= 1 # decrement the index by 1 to avoid skipping the next character after the number
                 elif expression[i] in "+-*/":
                     # ensure that * and / are processed before + and -
@@ -103,4 +110,3 @@ if __name__ == "__main__":
         else:
             result = calc.evaluate_expression()
             print(f"The result of the expression is: {result}")
-        
