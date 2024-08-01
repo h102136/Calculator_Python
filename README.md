@@ -60,7 +60,7 @@ Enter an expression ex:(7+8.5)*5-9/3 (+, -, *, / only) or Q for quit:
 cd ../tests
 ```
 
-- Run the test:<br><br>
+- Run the test:<br>
 ```sh
 python test_calculator_class.py 
 ```
@@ -70,7 +70,8 @@ python test_calculator_class.py
 python test_calculator_function.py 
 ```
 <br>
-- Check the coverage of test case:<be><br>
+- Check the coverage of test case:<be>
+
 ```sh
 coverage run -m unittest test_calculator_class.py
 ```
