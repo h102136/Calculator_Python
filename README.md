@@ -37,7 +37,7 @@ cd Calculator_Python/calculator
 
 Run the program:<br><br>
 
-- Type the command below on the current path:<br><br>
+- Type the command below on the current path:<br>
 ```sh
 python calculator_python.py
 ```
@@ -59,6 +59,7 @@ Enter an expression ex:(7+8.5)*5-9/3 (+, -, *, / only) or Q for quit:
 ```sh
 cd ../tests
 ```
+<br>
 
 - Run the test:<br>
 ```sh
