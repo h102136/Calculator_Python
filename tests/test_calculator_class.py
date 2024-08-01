@@ -18,6 +18,7 @@ class TestCalculator(unittest.TestCase):
         expression = self.calculator.get_expression()
         self.assertEqual(expression, '2+3*5')
 
+    # test case for invalid user input
     @patch('builtins.input', side_effect=['2++3', 'Q'])
     def test_get_expression_invalid(self, mock_input):
         with self.assertRaises(SystemExit):
@@ -34,6 +35,7 @@ class TestCalculator(unittest.TestCase):
         self.calculator.expression = "2++3"
         self.assertFalse(self.calculator.validate_expression())
 
+    # test case for expression evaluation
     def test_evaluate_expression(self):
         self.calculator.expression = "2+3*5"
         self.assertEqual(self.calculator.evaluate_expression(), 17)
@@ -43,17 +45,19 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(self.calculator.evaluate_expression(), 16)
         self.calculator.expression = "10/(5-3)"
         self.assertEqual(self.calculator.evaluate_expression(), 5)
-
+    
+    # test case for reinitializing the expression
     def test_reinitialize(self):
-        self.calculator.expression = "2++3"
-        self.assertFalse(self.calculator.validate_expression())
+        self.calculator.expression = "2++3" # invalid expression
+        self.assertFalse(self.calculator.validate_expression()) # validate the expression and it's invalid
         
-        with patch('builtins.input', side_effect=['2+3*5']):
-            self.calculator.reinitialize()
+        with patch('builtins.input', side_effect=['2+3*5']): # user re-enter the expression 
+            self.calculator.reinitialize() # reinitialize the expression after user re-enter the expression
         
         self.calculator.expression = "2+3*5"
         self.assertTrue(self.calculator.validate_expression())
 
+    # test case for main function (make sure the loop is working)
     @patch('builtins.input', side_effect=['2+3*5', 'Q'])
     @patch('sys.stdout', new_callable=StringIO)
     def test_main_valid_expression(self, mock_stdout, mock_input):
