@@ -40,9 +40,11 @@ Run the program:<br><br>
 python calculator_python.py
 ```
 <br>
-- and the program will show:<br>
+
+- and the program will show the info below:<br>
 
     Enter an expression ex:(7+8.5)*5-9/3 (+, -, *, / only) or Q for quit: 
-    
+
 <br>
+
 - then you are good to input a expression and get a result.
