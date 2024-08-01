@@ -1,7 +1,0 @@
-Name                                                          Stmts   Miss  Cover
----------------------------------------------------------------------------------
-C:\Intern\Calculator_Python\calculator\__init__.py                0      0   100%
-C:\Intern\Calculator_Python\calculator\calculator_python.py      74     17    77%
-test_calculator_function.py                                      31      1    97%
----------------------------------------------------------------------------------
-TOTAL                                                           105     18    83%

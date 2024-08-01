@@ -39,7 +39,7 @@ Run the program:<br><br>
 
 - Type the command below on the current path:<br>
 ```sh
-python calculator_python.py
+python calculator.py
 ```
 <br>
 
@@ -63,23 +63,15 @@ cd ../tests
 
 - Run the test:<br>
 ```sh
-python test_calculator_class.py 
+python test_calculator.py 
 ```
 <br>
 
-```sh
-python test_calculator_function.py 
-```
-<br>
+
 - Check the coverage of test case:<be>
 
 ```sh
-coverage run -m unittest test_calculator_class.py
-```
-<br>
-
-```sh
-coverage run -m unittest test_calculator_function.py
+coverage run -m unittest test_calculator.py
 ```
 <br>
 
