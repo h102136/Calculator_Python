@@ -20,16 +20,16 @@ Unit test cases (calss and function) and coverage reports included
 ### Steps
 
 Clone the repository:<br><br>
-    Open CMD or PowerShell and type the command below:
-    ```sh
+    &nbsp;Open CMD or PowerShell and type the command below:
+    &nbsp;```sh
     git clone https://github.com/h102136/Calculator_Python
     cd Calculator_Python/calculator
     ```<br>
-    The path setting of the program located is completed.
+    &nbsp;The path setting of the program located is completed.
 ## Usage
 
 Run the program:<br><br>
-    Type the command below on the current path:
+    Type the command below on the current path:<br>
     ```sh
     python calculator_python.py
     ```
