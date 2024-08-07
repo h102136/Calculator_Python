@@ -1,8 +1,8 @@
 # Calculator by Python
 
-A calculator with limited operation (+, -, *, /, (, ) only) by Python.
-Allow users to input an expression (ex: 4 + 5 / 9 * (7 + 5)) to output a result.
-Unit test cases (calss and function) and coverage reports included
+- A calculator with limited operation (+, -, *, /, (, ) only) by Python.
+- Allow users to input an expression (ex: 4 + 5 / 9 * (7 + 5)) to output a result.
+- Unit test cases (calss and function) and coverage reports included
 
 ## Table of Contents
 
